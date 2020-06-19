@@ -1,4 +1,4 @@
-package Actions;
+package actions;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.LoadableComponent;
