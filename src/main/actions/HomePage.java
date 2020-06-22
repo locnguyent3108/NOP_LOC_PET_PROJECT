@@ -4,21 +4,23 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class HomePage extends LoadableComponent<HomePage> {
+public class HomePage extends BasePage implements checkloadpage{
 
     private WebDriver driver;
-    private WebDriverWait wait;
     private BasePage page;
 
-    public HomePage(WebDriver driver, WebDriverWait wait, BasePage page) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, 10);
-        this.page = new BasePage(driver);
+    public HomePage(WebDriver driver) {
+        super(driver);
     }
 
     @Override
     protected void load() {
 
+    }
+
+    @Override
+    public boolean isloaded() {
+        return false;
     }
 
     @Override

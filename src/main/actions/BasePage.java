@@ -1,15 +1,14 @@
 package actions;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
     private WebDriver driver;
     Actions act;
-
+    WebDriverWait wait;
     public BasePage(WebDriver driver, Actions act) {
         this.driver = driver;
         this.act = act;
@@ -18,6 +17,8 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
+        wait = new WebDriverWait(driver, 10);
+
     }
 
     /*
@@ -33,12 +34,37 @@ public class BasePage {
     sendKeyToAlert
     getTextInAlert
      */
-
+    public WebElement findElement(String locator) {
+        try {
+            if (locator.startsWith("CLASS")) {
+                return driver.findElement(By.className(locator));
+            } else if (locator.startsWith("ID")) {
+                return driver.findElement(By.id(locator));
+            } else if (locator.startsWith("XPATH")) {
+                return driver.findElement(By.xpath(locator));
+            }
+        } catch(NoSuchElementException e) {
+            //TODO change to loger later
+            System.out.println("Element not found" + e.toString());
+        }
+        return null;
+    }
     /*
     wait method implements:
     waitAlertPresence
-
      */
+    public void waitElementClickable(String locator) {
+        wait.until(ExpectedConditions.elementToBeClickable(findElement(locator)));
+    }
+
+    public void waitElementByText(String locator, String textValue) {
+        wait.until(ExpectedConditions.textToBePresentInElement(
+                findElement(locator), textValue));
+    }
+
+
+
+
 
     //page actions method:
     public void click(String clickLocatorXpath) {
@@ -84,6 +110,5 @@ public class BasePage {
         act.build().perform();
     }
 
-    //WAIT METHODS
 
 }
