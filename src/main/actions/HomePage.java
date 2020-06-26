@@ -1,30 +1,34 @@
 package actions;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.LoadableComponent;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static Interfaces.HomePageUI.XPATH_FOOTER_POWERED;
 
 public class HomePage extends BasePage implements checkloadpage{
-
-    private WebDriver driver;
-    private BasePage page;
+    static final  String homePageUrl = "https://demo.nopcommerce.com/";
 
     public HomePage(WebDriver driver) {
         super(driver);
     }
 
-    @Override
-    protected void load() {
 
+    @Override
+    public void load() {
+        openPage(homePageUrl);
     }
 
     @Override
-    public boolean isloaded() {
-        return false;
+    public boolean isloaded() throws NoSuchFieldException {
+        waitElementToAction(XPATH_FOOTER_POWERED);
+        return findElement(XPATH_FOOTER_POWERED).isDisplayed();
     }
 
-    @Override
-    protected void isLoaded() throws Error {
-
+    public void get() {
+        try {
+            load();
+            isloaded();
+        } catch (Exception e) {
+            System.out.println("Page error: " + e.toString());
+        }
     }
 }

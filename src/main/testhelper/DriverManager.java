@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class DriverManager {
-    private static WebDriver driver = null;
+    private static WebDriver driver;
 
     private DriverManager() {}
 

@@ -12,23 +12,22 @@ import testhelper.PageGenerator;
 
 public class TC_01_Empty_Data {
     WebDriver driver;
-    HomePage homePageInstance;
     LoginPage loginPageInstance;
+
     @BeforeClass
     public void prepareTest() {
         driver = DriverManager.getDriverInstance();
-        homePageInstance = PageGenerator.getHomePage(driver);
         loginPageInstance = PageGenerator.getLoginPage(driver);
-
     }
 
     @BeforeMethod
-    public void precondition() {
+    public void preCondition() {
+        loginPageInstance.get();
     }
 
     @Test
-    public void test() {
-
+    public void test() throws NoSuchFieldException {
+        loginPageInstance.submitLogin();
     }
 
     @AfterClass

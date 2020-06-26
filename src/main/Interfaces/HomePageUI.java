@@ -1,8 +1,9 @@
 package Interfaces;
 
 public class HomePageUI {
-    public final String HOMEPAGE_URL = "https://demo.nopcommerce.com/";
-    public final String LOGIN_BUTTON = "//a[@class='ico-login']";
+    public static final String HOMEPAGE_URL = "https://demo.nopcommerce.com/";
+    public static final String XPATH_LOGIN_BUTTON = "//a[@class='ico-login']";
+    public static final String XPATH_FOOTER_POWERED = "//div[@class='footer-powered-by']";
     private HomePageUI(){
 
     }
