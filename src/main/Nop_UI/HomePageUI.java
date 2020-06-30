@@ -1,4 +1,4 @@
-package Interfaces;
+package Nop_UI;
 
 public class HomePageUI {
     public static final String HOMEPAGE_URL = "https://demo.nopcommerce.com/";

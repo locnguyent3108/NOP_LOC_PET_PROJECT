@@ -2,7 +2,7 @@ package actions;
 
 import org.openqa.selenium.WebDriver;
 
-import static Interfaces.HomePageUI.XPATH_FOOTER_POWERED;
+import static Nop_UI.HomePageUI.XPATH_FOOTER_POWERED;
 
 public class HomePage extends BasePage implements checkloadpage{
     static final  String homePageUrl = "https://demo.nopcommerce.com/";

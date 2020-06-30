@@ -1,4 +1,4 @@
-package Interfaces;
+package Nop_UI;
 
 public class CommonUI {
     //HEADER MENU

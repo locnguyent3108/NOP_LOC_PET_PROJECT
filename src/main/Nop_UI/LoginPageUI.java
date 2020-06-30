@@ -1,4 +1,4 @@
-package Interfaces;
+package Nop_UI;
 
 public class LoginPageUI {
     public static final String XPATH_PAGE_TITLE = "//div[@class='header-logo']//a//img";
