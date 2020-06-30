@@ -12,7 +12,8 @@ import testhelper.PageGenerator;
 public class TC_02_Invalid_email {
     WebDriver driver;
     LoginPage loginPageInstance;
-
+    String invalidEmail = "abc";
+    String errorMessage = "Wrong email";
     @BeforeClass
     public void prepareTest() {
         driver = DriverManager.getDriverInstance();
@@ -26,9 +27,9 @@ public class TC_02_Invalid_email {
 
     @Test
     public void test() throws NoSuchFieldException {
-        loginPageInstance.inputInvalidEmail()
+        loginPageInstance.inputEmail(invalidEmail)
                 .submitLogin();
-        loginPageInstance.isInvalidErrorDisplay();
+        loginPageInstance.isInvalidErrorDisplay(errorMessage);
     }
 
     @AfterClass

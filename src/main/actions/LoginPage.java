@@ -45,15 +45,22 @@ public class LoginPage extends BasePage implements checkloadpage{
         return this;
     }
 
-    public LoginPage inputInvalidEmail() {
+    public LoginPage inputEmail(String value) {
         waitElementToAction(XPATH_EMAIL_TEXT_FIELD);
-        sendKeys(XPATH_EMAIL_TEXT_FIELD, "invalid");
+        sendKeys(XPATH_EMAIL_TEXT_FIELD, value);
         return this;
     }
 
-    public void isInvalidErrorDisplay() {
+    public void isInvalidErrorDisplay(String errorText) {
         WebElement e = findElement(XPATH_ERROR_EMAIL);
         waitElementToAction(XPATH_ERROR_EMAIL);
-        checkElementContent(XPATH_ERROR_EMAIL,"Wrong email");
+        checkElementContent(XPATH_ERROR_EMAIL,errorText);
+    }
+
+    public void isEmailNonExists(String errorText) {
+        WebElement e = findElement(XPATH_ERROR_EMAIL_NOT_FOUND);
+        waitElementToAction(XPATH_ERROR_EMAIL_NOT_FOUND);
+        checkElementContent(XPATH_ERROR_EMAIL_NOT_FOUND,errorText);
+
     }
 }
