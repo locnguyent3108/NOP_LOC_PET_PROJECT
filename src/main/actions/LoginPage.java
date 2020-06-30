@@ -2,6 +2,7 @@ package actions;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import static Interfaces.LoginPageUI.*;
 
@@ -15,7 +16,7 @@ public class LoginPage extends BasePage implements checkloadpage{
     @Override
     public void load() {
         openPage(LOGIN_URL);
-        waitElementToAction(CLASS_PAGE_TITLE);
+        waitElementToAction(XPATH_PAGE_TITLE);
     }
 
     @Override
@@ -32,8 +33,27 @@ public class LoginPage extends BasePage implements checkloadpage{
         }
     }
 
-    public void submitLogin() throws NoSuchFieldException {
+    public LoginPage submitLogin() throws NoSuchFieldException {
         waitElementClickable(XPATH_LOGIN_BUTTON);
         click(XPATH_LOGIN_BUTTON);
+        return this;
+    }
+
+    public LoginPage isEmptyAlertDisplayed(){
+        waitElementToAction(XPATH_ERROR_EMAIL);
+        isElementDisplayed(XPATH_ERROR_EMAIL);
+        return this;
+    }
+
+    public LoginPage inputInvalidEmail() {
+        waitElementToAction(XPATH_EMAIL_TEXT_FIELD);
+        sendKeys(XPATH_EMAIL_TEXT_FIELD, "invalid");
+        return this;
+    }
+
+    public void isInvalidErrorDisplay() {
+        WebElement e = findElement(XPATH_ERROR_EMAIL);
+        waitElementToAction(XPATH_ERROR_EMAIL);
+        checkElementContent(XPATH_ERROR_EMAIL,"Wrong email");
     }
 }

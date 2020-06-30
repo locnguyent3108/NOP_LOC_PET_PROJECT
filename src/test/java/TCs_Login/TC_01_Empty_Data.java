@@ -27,7 +27,8 @@ public class TC_01_Empty_Data {
 
     @Test
     public void test() throws NoSuchFieldException {
-        loginPageInstance.submitLogin();
+        loginPageInstance.submitLogin()
+                .isEmptyAlertDisplayed();
     }
 
     @AfterClass

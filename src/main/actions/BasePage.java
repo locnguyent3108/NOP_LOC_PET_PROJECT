@@ -4,10 +4,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import sun.jvm.hotspot.ui.Inspector;
-
-import java.lang.reflect.Field;
-
+import org.testng.Assert;
+import org.testng.Assert.*;
 public class BasePage {
     private WebDriver driver;
     Actions act;
@@ -41,20 +39,20 @@ public class BasePage {
         driver.get(url);
     }
 
-    public WebElement findElement(String locator) throws NoSuchFieldException {
-
+    public WebElement findElement(String locator){
+        return driver.findElement(By.xpath(locator));
     }
     /*
     wait method implements:
     waitAlertPresence
      */
-    public void waitElementClickable(String locator) throws NoSuchFieldException {
+    public void waitElementClickable(String locator){
         WebElement e = findElement(locator);
         wait.until(ExpectedConditions.elementToBeClickable(e));
     }
 
     public void waitElementToAction(String locator) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(locator)));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
     }
 
     //page actions method:
@@ -101,5 +99,18 @@ public class BasePage {
         act.build().perform();
     }
 
+    //Assert
+    public void isElementDisplayed(String locator) {
+        WebElement element = findElement(locator);
+        try {
+            Assert.assertTrue(element.isDisplayed());
+        } catch (ElementNotVisibleException e) {
+            System.out.println("%s not display: " + e.getMessage());
+        }
+    }
 
+    public void checkElementContent(String locator, String expectedValue){
+        WebElement e = findElement(locator);
+        Assert.assertEquals(e.getText(), expectedValue);
+    }
 }
