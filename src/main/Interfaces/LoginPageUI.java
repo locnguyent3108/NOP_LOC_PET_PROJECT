@@ -6,4 +6,6 @@ public class LoginPageUI {
     public static final String XPATH_ERROR_EMAIL = "//span[@class='field-validation-error']";
     public static final String XPATH_EMAIL_TEXT_FIELD = "//input[@id='Email']";
 
+    private LoginPageUI() {
+    }
 }
